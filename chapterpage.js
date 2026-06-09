@@ -141,12 +141,7 @@ function buildCardBody(ch) {
   name.className  = "chapter-card-name font-display";
   name.textContent = ch.title;
 
-  const sub = document.createElement("p");
-  sub.className  = "chapter-card-sub";
-  sub.textContent = ch.subtitle;
-
   foot.appendChild(name);
-  foot.appendChild(sub);
   body.appendChild(top);
   body.appendChild(foot);
 
@@ -196,12 +191,7 @@ function render() {
       lockIcon.innerHTML = svgLock();
       top.appendChild(lockIcon);
 
-      // const lockMsg = document.createElement("div");
-      // lockMsg.className  = "chapter-lock-msg font-mono";
-      // lockMsg.textContent = `CH.${String(ch.id - 1).padStart(2, "0")} abschließen zum Entsperren`;
-
       card.appendChild(body);
-      card.appendChild(lockMsg);
       grid.appendChild(card);
     }
   });
