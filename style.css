@@ -536,6 +536,13 @@ body {
 }
 .chapter-card:hover { border-color: var(--foreground); }
 
+.card-ch-1 { background-color: #135ae4; }
+.card-ch-2 { background-color: #ffa3cf; }
+.card-ch-3 { background-color: #269e5f; }
+.card-ch-4 { background-color: #cba6e8; }
+.card-ch-5 { background-color: #cba6e8; }
+.card-ch-6 { background-color: #ff6853; }
+
 @keyframes cardIn {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
