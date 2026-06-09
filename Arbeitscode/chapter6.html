@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1366, height=1024, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+  <title>CH.06 — Wissenszentrum · Type Lab</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="min-h-screen bg-background flex flex-col">
+
+  <div class="ch6-header">
+    <header class="chapter-header">
+      <div class="chapter-header-inner">
+        <a href="chapterpage.html" class="chapter-header-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg>
+          Menü
+        </a>
+        <div class="chapter-header-divider"></div>
+        <div class="chapter-header-meta">
+          <span class="chapter-num font-mono">CH.06</span>
+          <span class="chapter-title-label font-display">Wissenszentrum</span>
+        </div>
+        <div class="chapter-header-right">
+          <div class="progress-dots" id="progress-dots"></div>
+          <span class="font-mono text-muted" style="font-size:.75rem">6/6</span>
+          <button class="btn-complete" id="btn-complete" type="button">Abschließen</button>
+        </div>
+      </div>
+      <p class="chapter-eyebrow text-muted">
+        Artikel, Fallstudien und Inspiration für die Zeit nach dem Kurs.
+      </p>
+    </header>
+  </div>
+
+  <main class="chapter-main animate-in">
+    <div class="ch6-layout">
+
+      <!-- Hero article -->
+      <article class="ch6-hero">
+        <div class="ch6-hero-art">
+          <div class="art-hero-type">
+            <span>T<span style="font-stretch:75%">y</span>p<span style="font-style:italic">e</span></span>
+          </div>
+        </div>
+        <div class="ch6-hero-body">
+          <span class="ch6-hero-tag font-mono">EDITORIAL</span>
+          <h2 class="ch6-hero-title font-display">Schrift ist keine Datei mehr. Sie ist ein Feed.</h2>
+          <p class="ch6-hero-excerpt">
+            Fünf Jahrhunderte lang bedeutete Typografie die Wahl aus festen, unveränderlichen Buchstabenformen. Heute kommen Fonts als Systeme – parametrisch, programmierbar, lebendig. Diese Ausgabe dokumentiert den Wandel und die Studios, die ihn vorantreiben.
+          </p>
+          <div class="ch6-hero-read font-mono">Ausgabe 01 · 18 Min. Lesezeit</div>
+        </div>
+      </article>
+
+      <!-- Article grid -->
+      <div class="ch6-grid" id="ch6-grid"></div>
+
+      <!-- Footer -->
+      <footer class="ch6-footer">
+        <h2 class="font-display">Du hast das Ende des Kurses erreicht.</h2>
+        <p>Schließe dieses Kapitel ab, um deinen Kurs zu beenden.</p>
+      </footer>
+
+    </div>
+  </main>
+
+  <script src="progress.js"></script>
+  <script src="chapter6.js"></script>
+</body>
+</html>

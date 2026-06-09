@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1366, height=1024, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+  <title>Type Lab — Generativer Typografie-Kurs</title>
+  <meta name="description" content="Eine interaktive E-Learning-Anwendung zu Typografie, Variable Fonts und generativem Schriftdesign." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="min-h-screen bg-background">
+
+  <header class="home-header">
+    <div class="home-header-left">
+      <!-- <p class="home-tag font-mono">Type Lab · Edition 01</p> -->
+      <h1 class="home-headline font-display">
+        Generative Typografie,<br />Kapitel für Kapitel.
+      </h1>
+    </div>
+    <div class="home-progress">
+      <p class="home-progress-label font-mono">FORTSCHRITT</p>
+      <p class="home-progress-count font-display" id="progress-count">
+        0<span>/6</span>
+      </p>
+      <button class="home-reset" id="reset-btn" type="button" style="display:none">Fortschritt zurücksetzen</button>
+    </div>
+  </header>
+
+  <div class="chapters-grid" id="chapters-grid">
+    <!-- Cards rendered by JS -->
+  </div>
+
+  <script src="progress.js"></script>
+  <script src="chapterpage.js"></script>
+</body>
+</html>
