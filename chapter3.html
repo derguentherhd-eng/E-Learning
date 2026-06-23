@@ -2,6 +2,10 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=1366, height=1024, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
   <title>CH.03 — Typography Timeline · Type Lab</title>
   <link rel="stylesheet" href="style.css" />
@@ -43,5 +47,14 @@
   <script src="progress.js"></script>
   <script src="overlay.js"></script>
   <script src="chapter3.js"></script>
+  <script>
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a');
+    if (a && a.host === location.host && a.target !== '_blank') {
+      e.preventDefault();
+      location.href = a.href;
+    }
+  });
+  </script>
 </body>
 </html>
