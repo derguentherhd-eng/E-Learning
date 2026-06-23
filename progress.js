@@ -37,12 +37,30 @@ function renderDots(chapterId) {
   const p    = readProgress();
   const wrap = document.getElementById("progress-dots");
   wrap.innerHTML = "";
+
+  const startA = document.createElement("a");
+  startA.href = "chapterpage.html";
+  startA.className = "chapter-nav-start";
+  startA.textContent = "START";
+  wrap.appendChild(startA);
+
+  const sep = document.createElement("div");
+  sep.className = "chapter-nav-sep";
+  wrap.appendChild(sep);
+
   CHAPTERS.forEach(c => {
-    const d = document.createElement("div");
-    d.className = "progress-dot" +
-      (c.id === chapterId ? " current" : (p.completed.includes(c.id) ? " done" : ""));
+    const isCurrent = c.id === chapterId;
+    const isDone    = p.completed.includes(c.id);
+    const d = isDone && !isCurrent
+      ? document.createElement("a")
+      : document.createElement("div");
+    if (isDone && !isCurrent) d.href = c.slug + ".html";
+    d.className = "chapter-nav-tab" +
+      (isCurrent ? " current" : (isDone ? " done" : ""));
+    d.textContent = String(c.id).padStart(2, "0");
     wrap.appendChild(d);
   });
+
   const btn    = document.getElementById("btn-complete");
   const done   = p.completed.includes(chapterId);
   const isLast = chapterId >= CHAPTERS.length;

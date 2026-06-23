@@ -6,7 +6,7 @@ const CHAPTER_DATA = [
   { id: 1, title: "E-Reader-Typografie",       subtitle: "Leseerfahrung anpassen",       slug: "chapter1", color: "#135ae4" },
   { id: 2, title: "Karteikarten-Karussell",    subtitle: "Schriftlehre lernen",          slug: "chapter2", color: "#ffa3cf" },
   { id: 3, title: "Typografie-Zeitstrahl",     subtitle: "1970 → 2016",                  slug: "chapter3", color: "#269e5f" },
-  { id: 4, title: "Variable Font Playground",  subtitle: "Achsen in Bewegung",           slug: "chapter4", color: "#cba6e8" },
+  { id: 4, title: "Variable Font Playground",  subtitle: "Achsen in Bewegung",           slug: "chapter4", color: "#fbd530" },
   { id: 5, title: "Generative Eingaben",       subtitle: "Audio- & distanzreaktiv",      slug: "chapter5", color: "#cba6e8" },
   { id: 6, title: "Wissenszentrum",            subtitle: "Artikel & Fallstudien",        slug: "chapter6", color: "#ff6853" },
 ];

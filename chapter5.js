@@ -10,7 +10,7 @@ renderDots(CHAPTER_ID);
 /* ── Config ─────────────────────────────────── */
 // EMA factors: higher = faster response, lower = smoother (less jitter)
 const AUDIO_ALPHA = 0.12;
-const FACE_ALPHA  = 0.05;
+const FACE_ALPHA  = 0.07;  // slightly higher to compensate for 100ms detection interval
 
 // Normalized inter-landmark distance thresholds (fraction of video width).
 // BlazeFace landmark[0]=rightEye, [1]=leftEye, [2]=nose, [3]=mouth
@@ -148,6 +148,7 @@ function sampleRMS() {
    CAMERA + BLAZEFACE  (face landmark detection)
    ═══════════════════════════════════════════════ */
 let faceModel = null, camStream = null, faceLoopActive = false;
+let faceRvfcHandle = null, inferenceRunning = false;
 
 async function initCamera() {
   try {
@@ -160,19 +161,23 @@ async function initCamera() {
 
     // Request front camera at low resolution (faster detection)
     camStream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: "user", width: { ideal: 320 }, height: { ideal: 240 } },
+      video: { facingMode: "user", width: { ideal: 240 }, height: { ideal: 180 } },
       audio: false,
     });
     videoEl.srcObject = camStream;
     await new Promise(r => { videoEl.onloadedmetadata = r; });
     videoEl.play();
 
+    // Set canvas dimensions once here — resetting them every frame is expensive
+    faceCanvas.width  = videoEl.videoWidth  || 240;
+    faceCanvas.height = videoEl.videoHeight || 180;
+
     setDistStatus("Modell lädt…");
     faceModel = await blazeface.load();
 
     setDistStatus("erkenne…");
     faceLoopActive = true;
-    faceLoop();
+    startFaceTracking();
   } catch (e) {
     const msg = e.name === "NotAllowedError" ? "verweigert" : (e.message.includes("unavailable") ? "nicht verfügbar" : "Fehler");
     setDistStatus(msg);
@@ -186,6 +191,11 @@ async function initCamera() {
 
 function teardownCamera() {
   faceLoopActive = false;
+  inferenceRunning = false;
+  if (faceRvfcHandle !== null) {
+    videoEl.cancelVideoFrameCallback(faceRvfcHandle);
+    faceRvfcHandle = null;
+  }
   if (camStream) { camStream.getTracks().forEach(t => t.stop()); camStream = null; }
   faceModel = null;
   camPreview.style.display = "none";
@@ -197,48 +207,61 @@ function ptDist([x1, y1], [x2, y2]) {
   return Math.sqrt(dx * dx + dy * dy);
 }
 
+// Shared landmark processing — called from both rVFC and fallback path
+function processFacePreds(preds) {
+  if (preds.length > 0) {
+    const lm = preds[0].landmarks;
+    const eyeMid     = [(lm[0][0] + lm[1][0]) / 2, (lm[0][1] + lm[1][1]) / 2];
+    const eyeSpan    = ptDist(lm[0], lm[1]);
+    const faceHeight = ptDist(eyeMid, lm[3]);
+    const combined   = (eyeSpan + faceHeight) / 2;
+    const rawNorm    = combined / (videoEl.videoWidth || 240);
+    const clamped    = Math.max(0, Math.min(1, (rawNorm - FACE_FAR) / (FACE_CLOSE - FACE_FAR)));
+    const nudge      = (clamped - smoothDist) * FACE_ALPHA;
+    if (Math.abs(nudge) > 0.0008) smoothDist += nudge;
+    setDistStatus("Gesicht erkannt");
+    drawPreview(lm);
+    camPreview.style.display = "block";
+  } else {
+    setDistStatus("kein Gesicht erkannt");
+  }
+}
+
+// Start tracking — prefer requestVideoFrameCallback (iOS 15.4+), fall back to setTimeout
+function startFaceTracking() {
+  if ('requestVideoFrameCallback' in HTMLVideoElement.prototype) {
+    faceRvfcHandle = videoEl.requestVideoFrameCallback(faceCallback);
+  } else {
+    faceLoop();
+  }
+}
+
+// rVFC path: fires once per available camera frame (max = camera fps, typically 30)
+async function faceCallback(_now, _meta) {
+  if (!faceLoopActive) return;
+  // Re-register immediately so we never miss a frame while inference is running
+  faceRvfcHandle = videoEl.requestVideoFrameCallback(faceCallback);
+  if (inferenceRunning || document.hidden || videoEl.readyState < 2 || !faceModel) return;
+  inferenceRunning = true;
+  try {
+    processFacePreds(await faceModel.estimateFaces(videoEl, false));
+  } catch (_) {}
+  inferenceRunning = false;
+}
+
+// Fallback for iOS < 15.4 (no requestVideoFrameCallback support)
 async function faceLoop() {
   if (!faceLoopActive) return;
-
+  if (document.hidden) { setTimeout(faceLoop, 500); return; }
   if (videoEl.readyState >= 2 && faceModel) {
-    try {
-      const preds = await faceModel.estimateFaces(videoEl, false /* returnTensors */);
-
-      if (preds.length > 0) {
-        const lm = preds[0].landmarks;
-        // lm[0]=rightEye  lm[1]=leftEye  lm[2]=nose  lm[3]=mouth
-        const eyeMid    = [(lm[0][0] + lm[1][0]) / 2, (lm[0][1] + lm[1][1]) / 2];
-        const eyeSpan   = ptDist(lm[0], lm[1]);
-        const eyeToNose = ptDist(eyeMid, lm[2]);
-        const noseToMouth = ptDist(lm[2], lm[3]);
-
-        // Weighted compound metric; all distances scale together with proximity
-        const combined = (eyeSpan + eyeToNose * 0.7 + noseToMouth * 0.5) / 2.2;
-        const rawNorm  = combined / (videoEl.videoWidth || 320);
-
-        // Map to [0, 1] where 0=far, 1=close
-        const clamped = Math.max(0, Math.min(1, (rawNorm - FACE_FAR) / (FACE_CLOSE - FACE_FAR)));
-        smoothDist = smoothDist * (1 - FACE_ALPHA) + clamped * FACE_ALPHA;
-
-        setDistStatus("Gesicht erkannt");
-        drawPreview(lm);
-        camPreview.style.display = "block";
-      } else {
-        setDistStatus("kein Gesicht erkannt");
-      }
-    } catch (_) {
-      // Silently swallow frame errors (blurry frame, model still loading, etc.)
-    }
+    try { processFacePreds(await faceModel.estimateFaces(videoEl, false)); } catch (_) {}
   }
-
-  // ~12 fps is plenty for distance estimation; leaves CPU headroom
-  setTimeout(faceLoop, 80);
+  setTimeout(faceLoop, 60);
 }
 
 function drawPreview(lm) {
   if (!videoEl.videoWidth) return;
-  faceCanvas.width  = videoEl.videoWidth;
-  faceCanvas.height = videoEl.videoHeight;
+  faceCtx.clearRect(0, 0, faceCanvas.width, faceCanvas.height);
 
   // Draw mirrored camera feed (selfie mode)
   faceCtx.save();
@@ -308,8 +331,22 @@ function setDist(on) {
 toggleAudio.addEventListener("click", () => setAudio(!audioOn));
 toggleDist.addEventListener("click",  () => setDist(!distOn));
 
+// Re-register rVFC if iOS paused the video while the tab was hidden
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && faceLoopActive && "requestVideoFrameCallback" in HTMLVideoElement.prototype) {
+    if (faceRvfcHandle !== null) videoEl.cancelVideoFrameCallback(faceRvfcHandle);
+    faceRvfcHandle = videoEl.requestVideoFrameCallback(faceCallback);
+  }
+});
+
 /* ── Render loop ─────────────────────────────── */
-function render() {
+let _lastRender = 0;
+function render(ts) {
+  requestAnimationFrame(render);
+  // Cap at ~30fps — font-variation changes are imperceptible above that
+  if (ts - _lastRender < 32) return;
+  _lastRender = ts;
+
   // Sample and EMA-smooth mic RMS
   const rawRMS = audioOn ? sampleRMS() : 0;
   smoothAudio = smoothAudio * (1 - AUDIO_ALPHA) + rawRMS * AUDIO_ALPHA;
@@ -363,8 +400,6 @@ function render() {
   document.getElementById("bar-dist").style.background  = distOn  ? "#fbd530" : "rgba(246,245,240,0.3)";
   document.getElementById("audio-meter").style.width    = audioBarW + "%";
   document.getElementById("dist-meter").style.width     = distBarW  + "%";
-
-  requestAnimationFrame(render);
 }
 
-render();
+requestAnimationFrame(render);

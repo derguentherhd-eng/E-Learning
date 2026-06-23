@@ -118,17 +118,19 @@ AXES.forEach(axis => {
   fill.style.width  = pct0 + "%";
   thumb.style.left  = pct0 + "%";
 
+  let fitRaf = null;
   input.addEventListener("input", () => {
     const v = parseFloat(input.value);
     const pct = ((v - axis.min) / (axis.max - axis.min)) * 100;
+    // Phase 1 — writes only, no layout reads (runs synchronously on every event)
     fill.style.width  = pct + "%";
     thumb.style.left  = pct + "%";
     valEl.textContent = v + (axis.unit || "");
-    const sampleEl = document.getElementById("sample-" + axis.key);
-    Object.assign(sampleEl.style, axis.apply(v));
-    fitSampleText(sampleEl);
-    const codeEl = document.getElementById("code-" + axis.key);
-    if (codeEl) codeEl.textContent = `font-variation-settings: "${axis.tag}" ${v}`;
+    Object.assign(sample.style, axis.apply(v));
+    codeTag.textContent = `font-variation-settings: "${axis.tag}" ${v}`;
+    // Phase 2 — deferred layout read; avoids forced synchronous reflow after font-variation write
+    if (fitRaf) cancelAnimationFrame(fitRaf);
+    fitRaf = requestAnimationFrame(() => { fitSampleText(sample); fitRaf = null; });
   });
 
   sliderTrack.appendChild(fill);
