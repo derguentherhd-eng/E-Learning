@@ -2,6 +2,8 @@
    chapter1.js — E-Reader Typography Simulator
    ============================================ */
 
+document.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
+
 const CHAPTER_ID = 1;
 
 document.getElementById("btn-complete").addEventListener("click", () => markComplete(CHAPTER_ID));

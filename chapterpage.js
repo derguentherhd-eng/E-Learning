@@ -2,6 +2,8 @@
    chapterpage.js — Chapter Overview Page
    ============================================ */
 
+document.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
+
 const CHAPTER_DATA = [
   { id: 1, title: "E-Reader-Typografie",       subtitle: "Leseerfahrung anpassen",       slug: "chapter1", color: "#135ae4" },
   { id: 2, title: "Karteikarten-Karussell",    subtitle: "Schriftlehre lernen",          slug: "chapter2", color: "#ffa3cf" },

@@ -57,6 +57,7 @@ html {
   width: 1366px;
   height: 1024px;
   overflow: hidden;
+  overscroll-behavior: none;
 }
 
 body {
@@ -64,6 +65,7 @@ body {
   width: 1366px;
   height: 1024px;
   overflow: hidden;
+  overscroll-behavior: none;
   background-color: var(--background);
   color: var(--foreground);
   font-family: 'Urbanist', ui-sans-serif, system-ui, sans-serif;
@@ -2016,10 +2018,10 @@ body {
 
 /* Info-Button (bottom-left, always visible) */
 .info-btn {
-  position: absolute;
+  position: fixed;
   bottom: 1.5rem;
   left: 1.5rem;
-  z-index: 199;
+  z-index: 9999;
   width: 38px;
   height: 38px;
   border-radius: 50%;

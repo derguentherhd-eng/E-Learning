@@ -2,6 +2,8 @@
    chapter2.js — Type Anatomy Flashcards
    ============================================ */
 
+document.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
+
 const CHAPTER_ID = 2;
 
 document.getElementById("btn-complete").addEventListener("click", () => markComplete(CHAPTER_ID));
@@ -103,13 +105,8 @@ CARDS.forEach((card, i) => {
   def.className = "ch2-card-def font-display";
   def.textContent = card.back;
 
-  const termB = document.createElement("span");
-  termB.className = "ch2-card-term-back font-display";
-  termB.textContent = card.front;
-
   back.appendChild(tagB);
   back.appendChild(def);
-  back.appendChild(termB);
 
   inner.appendChild(front);
   inner.appendChild(back);

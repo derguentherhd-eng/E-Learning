@@ -2,6 +2,8 @@
    chapter5.js — Generative Type · Reactive Inputs
    ============================================ */
 
+document.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
+
 const CHAPTER_ID = 5;
 
 document.getElementById("btn-complete").addEventListener("click", () => markComplete(CHAPTER_ID));
