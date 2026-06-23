@@ -1040,6 +1040,7 @@ body {
   background: var(--c-blue);
   color: var(--background);
   transform: rotateY(180deg);
+  justify-content: center;
 }
 
 .ch2-face-tag {
@@ -1049,7 +1050,12 @@ body {
   color: var(--muted-fg);
   align-self: flex-start;
 }
-.ch2-face-back .ch2-face-tag { color: rgba(246,245,240,0.6); }
+.ch2-face-back .ch2-face-tag {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  color: rgba(246,245,240,0.6);
+}
 
 .ch2-glyph {
   font-family: 'Urbanist', sans-serif;
@@ -2018,7 +2024,7 @@ body {
 
 /* Info-Button (bottom-left, always visible) */
 .info-btn {
-  position: fixed;
+  position: absolute;
   bottom: 1.5rem;
   left: 1.5rem;
   z-index: 9999;
