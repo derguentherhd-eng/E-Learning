@@ -3,8 +3,8 @@
   "short_name": "Type Lab",
   "description": "Eine interaktive E-Learning-Anwendung zu Typografie, Variable Fonts und generativem Schriftdesign.",
   "display": "standalone",
-  "scope": "/",
-  "start_url": "/index.html",
+  "scope": "./",
+  "start_url": "./index.html",
   "background_color": "#f6f5f0",
   "theme_color": "#f6f5f0",
   "orientation": "landscape"

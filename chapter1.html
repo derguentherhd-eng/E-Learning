@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -102,13 +102,20 @@
   <script src="overlay.js"></script>
   <script src="chapter1.js"></script>
   <script>
-  document.addEventListener('click', function(e) {
-    var a = e.target.closest('a');
-    if (a && a.host === location.host && a.target !== '_blank') {
+  (function() {
+    function pwaNav(e) {
+      var a = e.target.closest('a[href]');
+      if (!a || a.target === '_blank') return;
+      try {
+        var url = new URL(a.href, location.href);
+        if (url.origin !== location.origin) return;
+      } catch(ex) { return; }
       e.preventDefault();
-      location.href = a.href;
+      window.location.assign(a.href);
     }
-  });
+    document.addEventListener('touchend', pwaNav, { passive: false });
+    document.addEventListener('click',    pwaNav, false);
+  })();
   </script>
 </body>
 </html>
