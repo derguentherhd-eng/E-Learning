@@ -4,126 +4,142 @@
 
 const CHAPTER_ID = 6;
 
-document.getElementById("btn-complete").addEventListener("click", () => markComplete(CHAPTER_ID));
+document.getElementById('btn-complete').addEventListener('click', () => markComplete(CHAPTER_ID));
 renderDots(CHAPTER_ID);
 
 /* ── Article data ───────────────────────────── */
 const POSTS = [
-  { tag:"GENERATIVE TYPOGRAFIE", title:"Buchstaben, die zuhören, atmen und reagieren",    excerpt:"Das Variable-Font-Format hat uns kontinuierliche Achsen gegeben. Generative Typografie-Studios verbinden diese Achsen nun mit Mikrofonen, Beschleunigungssensoren und biometrischen Signalen.", read:"8 Min. Lesezeit", art:"stripes-warm" },
-  { tag:"FALLSTUDIE",            title:"BBC News · responsives Überschriften-Weight",      excerpt:"Eine einzige Reith-Sans-Datei, Weight an die Viewport-Breite geknüpft. Das Ergebnis: Überschriften, die optische Balance von 320px Smartphone bis 4K-Newsroom-Display halten.", read:"5 Min. Lesezeit", art:"dark" },
-  { tag:"PRAXISBEISPIEL",        title:"Wegeleitung für ältere Augen",                     excerpt:"Der Münchner Flughafen testete distanzreaktive Beschilderung: Schrift, die in Width und Weight zunimmt, wenn Reisende sich nähern. Verständlichkeit stieg um 22 % bei schlechtem Licht.", read:"6 Min. Lesezeit", art:"yellow" },
-  { tag:"INSPIRATION",           title:"Fünf generative Typografie-Studios zum Folgen",   excerpt:"Von Pentagrams algorithmischer Identitätsarbeit bis zu OCRs audioreaktiven Logotypen – eine Tour durch die Menschen, die Buchstaben in neue Dimensionen treiben.", read:"4 Min. Lesezeit", art:"swatches" },
-  { tag:"TUTORIAL",              title:"Eine Schrift an die Web Audio API koppeln",        excerpt:"Fünfzig Zeilen JavaScript verwandeln das Mikrofon in ein typografisches Instrument. RMS auf Weight mappen, Tonhöhe auf Width, Transienten auf Slant.", read:"12 Min. Lesezeit", art:"mono" },
-  { tag:"INSPIRATION",           title:"Variable Schrift im Motion Design",                excerpt:"Animation entlang von Achsen (statt Überblendung statischer Schnitte) hält Typografie scharf in jedem Frame. Lottie und CSS Keyframes funktionieren beide.", read:"7 Min. Lesezeit", art:"gradient" },
+  {
+    tag: 'VARIABLE FONTS · PANGRAM PANGRAM',
+    title: 'Die besten Variable Fonts der Gegenwart',
+    excerpt: 'Fragment, GT Ultra und Kachi-Buwa zeigen, wie Variable-Font-Technologie heute genutzt wird – nicht als technische Optimierung, sondern als kreatives Werkzeug, das typografische Klassifikationen neu herausfordert und emotionale Ausdrucksformen erschliesst.',
+    read: '8 Min. Lesezeit',
+    url: 'https://pangrampangram.com/blogs/journal/best-variable-fonts',
+    img: 'Images/ch6-variable-fonts.jpg',
+  },
+  {
+    tag: 'EDITORIAL · DESIGN OBSERVER',
+    title: 'Die Zukunft der Typografie',
+    excerpt: 'Petr van Blokland argumentiert, dass Schriftgroesse, Zeilenabstand und Schriftwahl auch im digitalen Zeitalter unveraendert gueltig bleiben. Responsives Design aendert nicht die Regeln – sondern die Komplexitaet ihrer Anwendung.',
+    read: '6 Min. Lesezeit',
+    url: 'https://designobserver.com/the-future-of-typography/',
+    img: 'Images/ch6-design-observer.png',
+  },
+  {
+    tag: 'TRENDS · MONOTYPE',
+    title: 'Sound & Vision: Wenn Klang zur Schrift wird',
+    excerpt: 'Monotypes Tool Sonotype erkundet die Synaesthesie zwischen Audio und visueller Typografie. Es hilft Kreativen, emotionale Verbindungen zwischen Klang und Schriftform herzustellen und macht sie zu gestalterischen Design-Assets.',
+    read: '5 Min. Lesezeit',
+    url: 'https://www.monotype.com/type-trends/sound-vision/',
+    img: null,
+    art: 'sound',
+  },
+  {
+    tag: 'ZUKUNFT · KI',
+    title: 'KI formt die Typografie neu',
+    excerpt: 'Custom-Font-Generatoren und KI-Layoutsysteme bieten neue Effizienz – werfen aber grundlegende Fragen zu kreativer Originalitaet, kultureller Vielfalt in Schriftformen und den urheberrechtlichen Rahmenbedingungen fuer KI-generierte Typefaces auf.',
+    read: '7 Min. Lesezeit',
+    url: 'https://medium.com/aimonks/ai-and-typography-typography-and-ai-144bb7b2687f',
+    img: null,
+    art: 'ai',
+  },
+  {
+    tag: 'LEXIKON · TYPOLEXIKON',
+    title: 'Generative Typografie durch Kuenstliche Intelligenz',
+    excerpt: 'Algorithmen erzeugen Layouts, Schriften und Webseiten auf Basis vordefinierter Regeln. Das Typolexikon untersucht Effizienzgewinne ebenso wie die Gefahr der Uniformierung und den Verlust menschlicher Kreativitaet im maschinell generierten Design.',
+    read: '9 Min. Lesezeit',
+    url: 'https://www.typolexikon.de/generative-typografie/',
+    img: 'Images/ch6-typolexikon.jpg',
+  },
+  {
+    tag: 'GESCHICHTE · PANGRAM PANGRAM',
+    title: 'Die ersten Schriften im Internet',
+    excerpt: 'Von Times New Roman und Arial als web-safe Fonts ueber Microsofts Schriften-Initiative 1996 bis zu CSS @font-face und Google Fonts – eine Zeitreise durch die Technologien, die Typografie im Web erst moeglich machten.',
+    read: '5 Min. Lesezeit',
+    url: 'https://pangrampangram.com/blogs/journal/internet-fonts',
+    img: 'Images/ch6-internet-fonts.jpg',
+  },
 ];
 
-/* ── Build article art ───────────────────────── */
-function buildArt(kind) {
-  const wrap = document.createElement("div");
-  wrap.className = "ch6-article-art";
+/* ── Build fallback art (articles without image) ── */
+function buildFallbackArt(kind) {
+  const wrap = document.createElement('div');
+  wrap.className = 'ch6-article-art';
 
-  switch (kind) {
-    case "stripes-warm": {
-      const d = document.createElement("div");
-      d.className = "art-stripes-warm";
-      for (let i = 0; i < 8; i++) {
-        const l = document.createElement("div");
-        l.style.cssText = `position:absolute;left:0;right:0;height:1px;background:rgba(19,90,228,0.6);top:${(i+1)*11}%`;
-        d.appendChild(l);
-      }
-      const sp = document.createElement("span");
-      sp.className = "font-display";
-      sp.textContent = "Aa";
-      d.appendChild(sp);
-      wrap.appendChild(d);
-      break;
+  if (kind === 'sound') {
+    const d = document.createElement('div');
+    d.className = 'art-sound';
+    for (let i = 0; i < 12; i++) {
+      const bar = document.createElement('div');
+      const h = 20 + Math.sin(i * 0.8) * 18 + Math.random() * 20;
+      bar.style.cssText = 'position:absolute;bottom:50%;width:6px;border-radius:3px;background:var(--c-coral);opacity:0.7;height:' + h + 'px;left:' + (8 + i * 14) + 'px;transform:translateY(50%)';
+      d.appendChild(bar);
     }
-    case "dark": {
-      const d = document.createElement("div");
-      d.className = "art-dark-type";
-      const sp = document.createElement("span");
-      sp.className = "font-display";
-      sp.textContent = "BBC";
-      d.appendChild(sp);
-      wrap.appendChild(d);
-      break;
-    }
-    case "yellow": {
-      const d = document.createElement("div");
-      d.className = "art-yellow-type";
-      const sp = document.createElement("span");
-      sp.className = "font-display";
-      sp.textContent = "→ Gate 27";
-      d.appendChild(sp);
-      wrap.appendChild(d);
-      break;
-    }
-    case "swatches": {
-      const d = document.createElement("div");
-      d.className = "art-swatches";
-      ["#fbd530","#135ae4","#ff6853","#ffa3cf","#269e5f","#cba6e8"].forEach(c => {
-        const cell = document.createElement("div");
-        cell.style.background = c;
-        d.appendChild(cell);
-      });
-      wrap.appendChild(d);
-      break;
-    }
-    case "mono": {
-      const d = document.createElement("div");
-      d.className = "art-mono font-mono";
-      d.textContent = `audioCtx.analyser.getFloatTimeDomainData(buf)\nconst rms = Math.sqrt(buf.reduce((a,b) => a + b*b, 0))\nelement.style.fontVariationSettings =\n  \`"wght" \${100 + rms*800}\``;
-      d.style.whiteSpace = "pre";
-      wrap.appendChild(d);
-      break;
-    }
-    case "gradient": {
-      const d = document.createElement("div");
-      d.className = "art-gradient";
-      const sp = document.createElement("span");
-      sp.className = "font-display";
-      sp.textContent = "Motion";
-      d.appendChild(sp);
-      wrap.appendChild(d);
-      break;
-    }
+    const sp = document.createElement('span');
+    sp.className = 'font-display';
+    sp.textContent = '♪';
+    sp.style.cssText = 'position:absolute;bottom:8px;right:12px;font-size:2rem;opacity:0.3;color:#fff;';
+    d.appendChild(sp);
+    wrap.appendChild(d);
+  } else if (kind === 'ai') {
+    const d = document.createElement('div');
+    d.className = 'art-ai-type';
+    const sp = document.createElement('span');
+    sp.className = 'font-display';
+    sp.textContent = 'AI';
+    d.appendChild(sp);
+    wrap.appendChild(d);
   }
+
   return wrap;
 }
 
 /* ── Render grid ─────────────────────────────── */
-const grid = document.getElementById("ch6-grid");
-POSTS.forEach(p => {
-  const article = document.createElement("article");
-  article.className = "ch6-article";
+const grid = document.getElementById('ch6-grid');
+POSTS.forEach(function(p) {
+  const article = document.createElement('article');
+  article.className = 'ch6-article';
 
-  article.appendChild(buildArt(p.art));
+  if (p.img) {
+    const artWrap = document.createElement('div');
+    artWrap.className = 'ch6-article-art';
+    const img = document.createElement('img');
+    img.src = p.img;
+    img.alt = p.title;
+    img.className = 'ch6-article-img';
+    artWrap.appendChild(img);
+    article.appendChild(artWrap);
+  } else {
+    article.appendChild(buildFallbackArt(p.art));
+  }
 
-  const body = document.createElement("div");
-  body.className = "ch6-article-body";
+  const body = document.createElement('div');
+  body.className = 'ch6-article-body';
 
-  const tag = document.createElement("div");
-  tag.className = "ch6-article-tag font-mono";
+  const tag = document.createElement('div');
+  tag.className = 'ch6-article-tag font-mono';
   tag.textContent = p.tag;
 
-  const title = document.createElement("h3");
-  title.className = "ch6-article-title font-display";
+  const title = document.createElement('h3');
+  title.className = 'ch6-article-title font-display';
   title.textContent = p.title;
 
-  const excerpt = document.createElement("p");
-  excerpt.className = "ch6-article-excerpt";
+  const excerpt = document.createElement('p');
+  excerpt.className = 'ch6-article-excerpt';
   excerpt.textContent = p.excerpt;
 
-  const footer = document.createElement("div");
-  footer.className = "ch6-article-footer";
+  const footer = document.createElement('div');
+  footer.className = 'ch6-article-footer';
 
-  const read = document.createElement("span");
-  read.className = "ch6-article-read font-mono";
+  const read = document.createElement('span');
+  read.className = 'ch6-article-read font-mono';
   read.textContent = p.read;
 
-  const link = document.createElement("span");
-  link.className = "ch6-article-link";
-  link.textContent = "Lesen →";
+  const link = document.createElement('a');
+  link.className = 'ch6-article-link';
+  link.textContent = 'Lesen →';
+  link.href = p.url;
+  link.target = '_blank';
 
   footer.appendChild(read);
   footer.appendChild(link);

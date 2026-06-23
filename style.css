@@ -3,7 +3,7 @@
    Single stylesheet for all 7 pages
    ============================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto+Flex:opsz,slnt,wdth,wght,GRAD@8..144,-10..0,25..151,100..1000,-200..150&family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100..900&family=Roboto+Flex:opsz,slnt,wdth,wght,GRAD@8..144,-10..0,25..151,100..1000,-200..150&family=JetBrains+Mono:wght@400;600&display=swap');
 
 /* ── Design tokens ─────────────────────────── */
 :root {
@@ -66,30 +66,18 @@ body {
   overflow: hidden;
   background-color: var(--background);
   color: var(--foreground);
-  font-family: 'Oswald', ui-sans-serif, system-ui, sans-serif;
+  font-family: 'Urbanist', ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ── Typography helpers ─────────────────────── */
-@font-face {
-  font-family: 'Boldonse';
-  src: url('fonts/Boldonse-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 /*font-family: system-ui, -apple-system, sans-serif;*/
 
-
 .font-display {
-  font-family: 'Boldonse', ui-sans-serif, system-ui, sans-serif;
-
-  /*font-family: 'Oswald', ui-sans-serif, system-ui, sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.01em; */
+  font-family: 'Urbanist', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
 }
 
 .font-showcase {
@@ -275,9 +263,10 @@ body {
 }
 
 .chapter-nav-start {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
   font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted-fg);
   text-decoration: none;
@@ -295,9 +284,10 @@ body {
 }
 
 .chapter-nav-tab {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
   font-size: 0.75rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: var(--muted-fg);
   width: 32px;
   height: 32px;
@@ -327,7 +317,7 @@ body {
   gap: 6px;
   padding: 10px 20px;
   border-radius: 9999px;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
@@ -340,17 +330,16 @@ body {
 .btn-complete.done  { background: var(--foreground); color: var(--background); }
 .btn-complete svg   { width: 14px; height: 14px; }
 
-/* Chapter title pill — bottom right, added by overlay.js */
+/* Chapter title pill — header left, added by overlay.js */
 .chapter-title-pill {
   position: absolute;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  z-index: 199;
-  background: var(--foreground);
-  color: var(--background);
-  font-family: 'JetBrains Mono', monospace;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 700;
   font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   padding: 0.5rem 1.25rem;
   border-radius: 9999px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -380,11 +369,11 @@ body {
 
 .ch5-header .chapter-nav-tab.current,
 .ch5-header .btn-complete,
-.ch5-header .btn-complete.done { background: var(--c-laven); color: var(--foreground); }
+.ch5-header .btn-complete.done { background: var(--c-coral); color: #ffffff; }
 
 .ch6-header .chapter-nav-tab.current,
 .ch6-header .btn-complete,
-.ch6-header .btn-complete.done { background: var(--c-coral); color: #ffffff; }
+.ch6-header .btn-complete.done { background: var(--c-laven); color: var(--foreground); }
 
 /* Main content area */
 .chapter-main {
@@ -518,11 +507,11 @@ body {
 }
 
 .home-headline {
-  font-family: 'Boldonse';
-  font-weight: 400;
-  font-size: 2rem;
-  line-height: 1.5;
-  /* letter-spacing: -0.05em; */
+  font-family: 'Urbanist', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 4.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   margin-top: -1rem;
   margin-bottom: 1rem;
   max-width: 60rem;
@@ -539,8 +528,7 @@ body {
 }
 
 .home-progress-count {
-  font-family: 'Boldonse';
-  font-weight: 400;
+  font-family: 'Urbanist'; font-weight: 800;
   font-size: 1.4rem;
   margin-top: 0.25rem;
 }
@@ -584,7 +572,7 @@ body {
 .chapter-card:hover { filter: brightness(0.96); }
 
 .card-ch-1 {
-  background-color: color-mix(in srgb, var(--c-blue)   80%, var(--background));
+  background-color: var(--c-blue);
   border: 2px solid var(--c-blue);
 }
 .card-ch-1 .chapter-card-name,
@@ -592,14 +580,14 @@ body {
 .card-ch-1 .chapter-card-sub  { color: rgba(255,255,255,0.7); }
 
 .card-ch-2 {
-  background-color: color-mix(in srgb, var(--c-pink)   82%, var(--background));
+  background-color: var(--c-pink);
   border: 2px solid var(--c-pink);
 }
 .card-ch-2 .chapter-card-name,
 .card-ch-2 .chapter-card-num  { color: var(--foreground); }
 
 .card-ch-3 {
-  background-color: color-mix(in srgb, var(--c-green)  80%, var(--background));
+  background-color: var(--c-green);
   border: 2px solid var(--c-green);
 }
 .card-ch-3 .chapter-card-name,
@@ -607,26 +595,26 @@ body {
 .card-ch-3 .chapter-card-sub  { color: rgba(255,255,255,0.7); }
 
 .card-ch-4 {
-  background-color: color-mix(in srgb, var(--c-yellow) 85%, var(--background));
+  background-color: var(--c-yellow);
   border: 2px solid var(--c-yellow);
 }
 .card-ch-4 .chapter-card-name,
 .card-ch-4 .chapter-card-num  { color: var(--foreground); }
 
 .card-ch-5 {
-  background-color: color-mix(in srgb, var(--c-laven)  80%, var(--background));
-  border: 2px solid var(--c-laven);
-}
-.card-ch-5 .chapter-card-name,
-.card-ch-5 .chapter-card-num  { color: var(--foreground); }
-
-.card-ch-6 {
-  background-color: color-mix(in srgb, var(--c-coral)  80%, var(--background));
+  background-color: var(--c-coral);
   border: 2px solid var(--c-coral);
 }
+.card-ch-5 .chapter-card-name,
+.card-ch-5 .chapter-card-num  { color: #ffffff; }
+.card-ch-5 .chapter-card-sub  { color: rgba(255,255,255,0.7); }
+
+.card-ch-6 {
+  background-color: var(--c-laven);
+  border: 2px solid var(--c-laven);
+}
 .card-ch-6 .chapter-card-name,
-.card-ch-6 .chapter-card-num  { color: #ffffff; }
-.card-ch-6 .chapter-card-sub  { color: rgba(255,255,255,0.7); }
+.card-ch-6 .chapter-card-num  { color: var(--foreground); }
 
 @keyframes cardIn {
   from { opacity: 0; transform: translateY(24px); }
@@ -707,9 +695,9 @@ body {
 }
 
 .chapter-card-name {
-  font-family: 'Boldonse';
-  font-weight: 400;
-  font-size: 1.25rem;
+  font-family: 'Urbanist', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 2.1rem;
   line-height: 1.25;
   color: var(--foreground);
 }
@@ -773,7 +761,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
 }
@@ -797,7 +785,7 @@ body {
   justify-content: center;
 }
 .art-4-letter {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: 8rem;
   line-height: 1;
   font-weight: 800;
@@ -812,7 +800,7 @@ body {
   position: absolute;
   left: 24px;
   bottom: 24px;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: 2.5rem;
   font-weight: 600;
   color: #faf3e3;
@@ -923,7 +911,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   transition: border-color 0.2s;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
 }
 .ch1-theme-btn:hover,
 .ch1-theme-btn.active { border-color: var(--foreground); }
@@ -1062,7 +1050,7 @@ body {
 .ch2-face-back .ch2-face-tag { color: rgba(246,245,240,0.6); }
 
 .ch2-glyph {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-weight: 600;
   font-size: 9rem;
   line-height: 1;
@@ -1070,20 +1058,19 @@ body {
 }
 
 .ch2-card-term {
-  font-family: 'Boldonse';
-  font-weight: 400;
+  font-family: 'Urbanist'; font-weight: 800;
   font-size: 1rem;
 }
 
 .ch2-card-def {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-weight: 600;
   font-size: 1.4rem;
   line-height: 1.375;
 }
 
 .ch2-card-term-back {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: 1rem;
   opacity: 0.6;
 }
@@ -1129,7 +1116,7 @@ body {
   border: none;
   cursor: pointer;
   font-size: 0.75rem;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-weight: 500;
 }
 .ch2-btn-flip svg { width: 14px; height: 14px; }
@@ -1192,7 +1179,7 @@ body {
 }
 
 .ch3-entry-title {
-  font-family: 'Boldonse';
+  font-family: 'Urbanist'; font-weight: 800;
   font-size: 2rem;
   line-height: 1.25;
   margin-bottom: 1rem;
@@ -1207,9 +1194,9 @@ body {
 
 .ch3-entry-glyph {
   margin-top: 1.5rem;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: 4.5rem;
-  color: #ffa3cf83;
+  color: #269e5f83;
 }
 
 .ch3-sidebar {
@@ -1241,7 +1228,7 @@ body {
 }
 
 .ch3-swatch-glyph {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: 6rem;
   line-height: 0.85;
 }
@@ -1332,8 +1319,7 @@ body {
 }
 
 .ch4-axis-name {
-  font-family: 'Boldonse';
-  font-weight: 400;
+  font-family: 'Urbanist'; font-weight: 800;
   font-size: 1.2rem;
   margin-top: 0.25rem;
 }
@@ -1372,7 +1358,7 @@ body {
 }
 
 .ch4-axis-desc-title {
-  font-family: 'Boldonse';
+  font-family: 'Urbanist'; font-weight: 800;
   font-size: 1.6rem;
   text-transform: uppercase;
   letter-spacing: -0.01em;
@@ -1415,7 +1401,7 @@ body {
   height: calc(1024px - 160px);
     .slider-track,
       .slider-fill {
-        background: var(--c-laven);
+        background: var(--c-coral);
       }
     
       .slider-thumb {
@@ -1648,6 +1634,14 @@ body {
   border-radius: calc(var(--radius) + 12px);
   overflow: hidden;
   position: relative;
+  background: var(--foreground);
+}
+
+.ch6-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .ch6-hero-body {
@@ -1664,8 +1658,7 @@ body {
 }
 
 .ch6-hero-title {
-  font-family: 'Boldonse';
-  font-weight: 400;
+  font-family: 'Urbanist'; font-weight: 800;
   font-size: 2.4rem;
   line-height: 1.5;
   margin-top: 1rem;
@@ -1679,11 +1672,17 @@ body {
 }
 
 .ch6-hero-read {
+  display: inline-block;
   margin-top: 1.5rem;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
-  color: var(--muted-fg);
+  color: var(--foreground);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(30,28,25,0.25);
+  padding-bottom: 1px;
+  transition: border-color 0.2s;
 }
+.ch6-hero-read:hover { border-color: var(--foreground); }
 
 .ch6-grid {
   display: grid;
@@ -1705,7 +1704,17 @@ body {
   aspect-ratio: 4/3;
   overflow: hidden;
   position: relative;
+  background: var(--foreground);
 }
+
+.ch6-article-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.ch6-article:hover .ch6-article-img { transform: scale(1.04); }
 
 .ch6-article-body {
   padding: 1.5rem;
@@ -1719,8 +1728,7 @@ body {
 }
 
 .ch6-article-title {
-  font-family: 'Boldonse';
-  font-weight: 400;
+  font-family: 'Urbanist'; font-weight: 800;
   font-size: 1.2rem;
   line-height: 1.8;
   margin-top: 0.5rem;
@@ -1747,6 +1755,10 @@ body {
 }
 
 .ch6-article-link {
+  text-decoration: none;
+  color: var(--muted-fg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
   transition: color 0.2s;
 }
 .ch6-article:hover .ch6-article-link { color: var(--foreground); }
@@ -1759,7 +1771,7 @@ body {
 }
 
 .ch6-footer h2 {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: 1.5rem;
 }
 
@@ -1781,12 +1793,37 @@ body {
   overflow: hidden;
 }
 .art-hero-type span {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: 10rem;
   font-weight: 800;
   line-height: 1;
   position: relative;
   z-index: 1;
+}
+
+.art-sound {
+  width: 100%;
+  height: 100%;
+  background: #1e1c19;
+  position: relative;
+  overflow: hidden;
+}
+
+.art-ai-type {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1e1c19 0%, #135ae4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.art-ai-type span {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 800;
+  font-size: 4.5rem;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: -0.02em;
 }
 
 .art-stripes-warm {
@@ -1800,7 +1837,7 @@ body {
   position: absolute;
   right: 16px;
   bottom: 8px;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: 3.5rem;
   font-weight: 600;
 }
@@ -1815,7 +1852,7 @@ body {
   justify-content: center;
 }
 .art-dark-type span {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: 4.5rem;
   font-weight: 700;
 }
@@ -1829,7 +1866,7 @@ body {
   justify-content: center;
 }
 .art-yellow-type span {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: 3.5rem;
   color: var(--c-blue);
 }
@@ -1863,7 +1900,7 @@ body {
   justify-content: center;
 }
 .art-gradient span {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: 4.5rem;
   font-weight: 700;
   color: #faf3e3;
@@ -1932,24 +1969,23 @@ body {
 }
 
 .instruction-card-title {
-  font-family: 'Boldonse';
-  font-weight: 400;
+  font-family: 'Urbanist'; font-weight: 800;
   font-size: 1.5rem;
-  line-height: 1.25;
+  line-height: 2.8rem;
   color: var(--foreground);
   align-self: flex-start;
   margin-top: -0.25rem;
 }
 
-.instruction-card-divider {
+/*.instruction-card-divider {
   width: 100%;
   height: 1px;
   background: var(--border);
   margin: 0.25rem 0;
-}
+}*/
 
 .instruction-card-text {
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   line-height: 1.7;
   color: rgba(30, 28, 25, 0.82);
   text-align: center;
@@ -1963,7 +1999,7 @@ body {
   background: var(--foreground);
   color: var(--background);
   border: none;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;

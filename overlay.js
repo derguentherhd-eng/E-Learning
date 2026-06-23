@@ -25,15 +25,22 @@
 
     var card = overlay.querySelector('.instruction-card');
 
+    // ── Acknowledgement state ─────────────────────
+    var titleNum   = chapterNum.replace('CH.', '');
+    var storageKey = 'type-lab-overlay-ack-' + titleNum;
+    var acknowledged = false;
+    try { acknowledged = !!localStorage.getItem(storageKey); } catch(e) {}
+
+    if (acknowledged) overlay.style.display = 'none';
+
     // ── Chapter accent color (for pill + info btn) ────
-    var titleNum = chapterNum.replace('CH.', '');
     var accentMap = {
       '01': { bg: '#135ae4', fg: '#ffffff' },
       '02': { bg: '#ffa3cf', fg: '#1e1c19' },
       '03': { bg: '#269e5f', fg: '#ffffff' },
       '04': { bg: '#fbd530', fg: '#1e1c19' },
-      '05': { bg: '#cba6e8', fg: '#1e1c19' },
-      '06': { bg: '#ff6853', fg: '#ffffff' }
+      '05': { bg: '#ff6853', fg: '#ffffff' },
+      '06': { bg: '#cba6e8', fg: '#1e1c19' }
     };
     var accent = accentMap[titleNum] || { bg: '#1e1c19', fg: '#f6f5f0' };
 
@@ -43,7 +50,9 @@
     titlePill.textContent = titleNum + ' ' + chapterTitle;
     titlePill.style.background = accent.bg;
     titlePill.style.color = accent.fg;
-    document.body.appendChild(titlePill);
+    var headerInner = document.querySelector('.chapter-header-inner');
+    if (headerInner) headerInner.appendChild(titlePill);
+    else document.body.appendChild(titlePill);
 
     // ── Info-Button ───────────────────────────────
     var infoBtn = document.createElement('button');
@@ -58,6 +67,7 @@
 
     function dismiss() {
       overlay.style.display = 'none';
+      try { localStorage.setItem(storageKey, '1'); } catch(e) {}
     }
 
     function show() {
