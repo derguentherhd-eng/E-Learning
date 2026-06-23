@@ -43,6 +43,9 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Canvas height: full viewport minus iOS status bar */
+  --canvas-h: calc(100vh - env(safe-area-inset-top, 0px));
 }
 
 /* ── Reset ─────────────────────────────────── */
@@ -55,15 +58,17 @@
 
 html {
   width: 1366px;
-  height: 1024px;
+  height: 100vh;
   overflow: hidden;
   overscroll-behavior: none;
 }
 
 body {
   position: relative;
+  box-sizing: border-box;
   width: 1366px;
-  height: 1024px;
+  height: 100vh;
+  padding-top: env(safe-area-inset-top, 0px);
   overflow: hidden;
   overscroll-behavior: none;
   background-color: var(--background);
@@ -94,7 +99,7 @@ body {
 
 
 /* ── Layout helpers ─────────────────────────── */
-.min-h-screen  { height: 1024px; }
+.min-h-screen  { height: 100vh; }
 .flex          { display: flex; }
 .flex-col      { flex-direction: column; }
 .flex-1        { flex: 1; }
@@ -985,7 +990,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(1024px - 120px);
+  height: calc(var(--canvas-h) - 120px);
   overflow: hidden;
   --card: var(--c-pink);
   --card-foreground: var(--c-blue);
@@ -1135,7 +1140,7 @@ body {
 .ch3-header {}
 
 .ch3-scroll-area {
-  height: calc(1024px - 120px);
+  height: calc(var(--canvas-h) - 120px);
   overflow-y: auto;
   position: relative;
 }
@@ -1225,7 +1230,7 @@ body {
 }
 
 .ch3-swatch-card {
-  aspect-ratio: 3/4;
+  aspect-ratio: 4/3;
   border-radius: calc(var(--radius) + 8px);
   display: flex;
   align-items: center;
@@ -1249,6 +1254,27 @@ body {
   font-size: 0.625rem;
   letter-spacing: 0.2em;
   opacity: 0.7;
+  white-space: nowrap;
+}
+
+.ch3-swatch-label {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  max-width: 68%;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-align: right;
+  opacity: 0.7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ch3-swatch-card.has-image .ch3-swatch-label {
+  color: #ffffff;
+  opacity: 1;
 }
 
 .ch3-swatch-img {
@@ -1269,6 +1295,7 @@ body {
   color: #ffffff;
   opacity: 1;
 }
+
 
 .ch3-entry-text-wrap {
   display: flex;
@@ -1406,7 +1433,7 @@ body {
   padding: 2rem;
   max-width: 1500px;
   margin: 0 auto;
-  height: calc(1024px - 160px);
+  height: calc(var(--canvas-h) - 160px);
     .slider-track,
       .slider-fill {
         background: var(--c-coral);

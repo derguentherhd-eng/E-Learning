@@ -126,47 +126,48 @@ ENTRIES.forEach(e => {
   entriesEl.appendChild(entry);
 });
 
-/* ── Render swatch / image cards ─────────────── */
+/* ── Image cards (left sidebar) ──────────────── */
+const IMAGES = [
+  { file: '01_1440-1970_Bleisatz Setzkasten.jpg',                                           year: '1440–1970', label: 'Bleisatz Setzkasten' },
+  { file: '02_1941_Linotype Setzer für die Zeitung Chicago Defender.png',              year: '1941',           label: 'Linotype Setzer · Chicago Defender' },
+  { file: '03_1960_Diatype Fotosatzmaschiene im Einzelbuchstabenverfahren.jpg',             year: '1960',           label: 'Diatype · Einzelbuchstabenverfahren' },
+  { file: '04_1960_Glasmaster für die Diatype Fotosatzmaschiene.jpg',                 year: '1960',           label: 'Glasmaster · Diatype' },
+  { file: '05_1962_Linotype Kompakterfassungs- & Belichtungsgerät.jpg',               year: '1962',           label: 'Linotype Kompakt-Belichtungsgerät' },
+  { file: '06_1983_Facharbeiterinnen für Satztechnik im Fotosatzverfahren.jpg',       year: '1983',           label: 'Fotosatz-Facharbeiterinnen' },
+  { file: '07_1982_PostScript Code & Dargestelltes Bild.png',                              year: '1982',           label: 'PostScript Code & Darstellung' },
+  { file: '08_1985_Pagemaker Interface.png',                                               year: '1985',           label: 'PageMaker Interface' },
+  { file: '09_1984_HP Laserjet welcher PostScript entschlüsseln konnte.jpg',          year: '1984',           label: 'HP LaserJet · PostScript' },
+  { file: '10_2002_Erste Typografie Tags für HTML & CSS.png',                         year: '2002',           label: 'Typografie-Tags für HTML & CSS' },
+  { file: '11_2011-2026_Interface von Glyphs einem kostenlosen Typografie Programm.png',   year: '2011–2026', label: 'Glyphs · Typografie-Interface' },
+  { file: '12_2010-2018_Startseite von DaFont.png',                                        year: '2010–2018', label: 'DaFont Startseite' },
+  { file: '13_2016_Variable Fonts mit Anpassungen der X & Y Achsen.png',                  year: '2016',           label: 'Variable Fonts · X & Y Achsen' },
+];
+
 const swatchesEl = document.getElementById("ch3-swatches");
-ENTRIES.forEach(e => {
+IMAGES.forEach(function(img) {
   const card = document.createElement("div");
-  card.className = "ch3-swatch-card";
+  card.className = "ch3-swatch-card has-image";
 
-  if (e.image) {
-    card.classList.add("has-image");
+  const imgEl = document.createElement("img");
+  imgEl.src = 'Images/' + encodeURIComponent(img.file);
+  imgEl.alt = img.label;
+  imgEl.className = "ch3-swatch-img";
 
-    const img = document.createElement("img");
-    img.src = e.image;
-    img.alt = e.title;
-    img.className = "ch3-swatch-img";
+  const overlay = document.createElement("div");
+  overlay.className = "ch3-swatch-overlay";
 
-    const overlay = document.createElement("div");
-    overlay.className = "ch3-swatch-overlay";
+  const yearLbl = document.createElement("div");
+  yearLbl.className = "ch3-swatch-year font-mono";
+  yearLbl.textContent = img.year;
 
-    const yearLbl = document.createElement("div");
-    yearLbl.className = "ch3-swatch-year font-mono";
-    yearLbl.textContent = e.year;
+  const descLbl = document.createElement("div");
+  descLbl.className = "ch3-swatch-label font-mono";
+  descLbl.textContent = img.label;
 
-    card.appendChild(img);
-    card.appendChild(overlay);
-    card.appendChild(yearLbl);
-  } else {
-    card.style.background = e.swatch;
-    card.style.color = e.invert ? "#faf3e3" : "#135ae4";
-
-    const glyph = document.createElement("span");
-    glyph.className = "ch3-swatch-glyph font-display";
-    glyph.style.fontWeight = e.weight;
-    glyph.textContent = e.glyph;
-
-    const yearLbl = document.createElement("div");
-    yearLbl.className = "ch3-swatch-year font-mono";
-    yearLbl.textContent = e.year;
-
-    card.appendChild(glyph);
-    card.appendChild(yearLbl);
-  }
-
+  card.appendChild(imgEl);
+  card.appendChild(overlay);
+  card.appendChild(yearLbl);
+  card.appendChild(descLbl);
   swatchesEl.appendChild(card);
 });
 
