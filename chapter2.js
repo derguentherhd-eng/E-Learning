@@ -27,22 +27,22 @@ const CARDS = [
     back:  "Früher (Bleisatz): Ein Font war ein physischer Satz von Metalllettern in einer einzigen Größe und einem einzigen Stil (z. B. 12 Punkt Garamond Fett). Heute (Digital): Ein Font ist eine skalierbare Software-Datei, die alle Größen und oft hunderte verschiedene Zeichenvarianten (Glyphen) enthält."
   },
   {
-    glyph: "g",
+    icon:  "Images/Icons/A-small_glyphs (1).svg",
     front: `Was ist eine „Glyphe“ im Kontext moderner Font-Technologie?`,
     back:  `Eine Glyphe ist die spezifische grafische Darstellung eines Zeichens. Ein Font kann für denselben Buchstaben (z. B. ein kleines „a“) verschiedene Glyphen enthalten, wie etwa Kapitälchen, Kursivformen oder dekorative Varianten.`
   },
   {
-    glyph: "↕",
+    icon:  "Images/Icons/arrows-vertical.svg",
     front: `Was versteht man unter „Leading“?`,
     back:  "Leading ist der vertikale Abstand von der Grundlinie einer Textzeile zur Grundlinie der nächsten. Der Begriff kommt aus der Zeit des Bleisatzes, als wörtlich Bleistreifen (lead) zwischen die Zeilen gelegt wurden, um den Abstand zu vergrößern."
   },
   {
-    glyph: "⇔",
+    icon:  "Images/Icons/arrows.svg",
     front: `Was bedeutet „Tracking“?`,
     back:  "Tracking ist das gleichmäßige Erweitern oder Verringern des horizontalen Abstands zwischen allen Zeichen eines ganzen Wortes oder Textblocks. Es wird genutzt, um die Textdichte und die optische Schwärzung einer Seite anzupassen."
   },
   {
-    glyph: "AV",
+    icon:  "Images/Icons/kerning.svg",
     front: `Was ist „Kerning“?`,
     back:  `Im Gegensatz zum Tracking ist Kerning die gezielte Anpassung des Abstands zwischen zwei bestimmten, aufeinanderfolgenden Zeichen (z. B. „A“ und „V“). Ziel ist es, störende weiße Lücken zu schließen, damit das Schriftbild harmonisch wirkt.`
   },
@@ -52,7 +52,7 @@ const CARDS = [
     back:  "Eine Ligatur ist die Verschmelzung von zwei oder mehr Buchstaben zu einem einzigen Zeichen (z. B. f und i zu fi), um Kollisionen von Buchstabenteilen zu vermeiden."
   },
   {
-    glyph: "≡",
+    icon:  "Images/Icons/ausrichtungen.svg",
     front: "Welche Satzarten (Ausrichtungen) gibt es hauptsächlich in den Fontsettings?",
     back:  "1. Linksbündig (Flattersatz rechts) – Standard für beste Lesbarkeit. 2. Rechtsbündig (Flattersatz links). 3. Zentriert (Symmetrisch, oft für Titel). 4. Blocksatz (Blocksatz links und rechts bündig)"
   },
@@ -81,16 +81,24 @@ CARDS.forEach((card, i) => {
   tagF.className = "ch2-face-tag font-mono";
   tagF.textContent = "FRAGE";
 
-  const glyph = document.createElement("span");
-  glyph.className = "ch2-glyph font-display";
-  glyph.textContent = card.glyph;
+  let glyphEl;
+  if (card.icon) {
+    glyphEl = document.createElement("img");
+    glyphEl.className = "ch2-glyph-icon";
+    glyphEl.src = card.icon;
+    glyphEl.alt = "";
+  } else {
+    glyphEl = document.createElement("span");
+    glyphEl.className = "ch2-glyph font-display";
+    glyphEl.textContent = card.glyph;
+  }
 
   const term = document.createElement("span");
   term.className = "ch2-card-term font-display";
   term.textContent = card.front;
 
   front.appendChild(tagF);
-  front.appendChild(glyph);
+  front.appendChild(glyphEl);
   front.appendChild(term);
 
   // Back face

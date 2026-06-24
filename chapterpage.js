@@ -16,6 +16,9 @@ const CHAPTER_DATA = [
 function resetProgress() {
   try { localStorage.removeItem(PROGRESS_KEY); } catch {}
   try { const s = JSON.parse(window.name || "{}"); delete s[PROGRESS_KEY]; window.name = JSON.stringify(s); } catch {}
+  for (let i = 1; i <= 6; i++) {
+    try { localStorage.removeItem('type-lab-overlay-ack-0' + i); } catch {}
+  }
   render();
 }
 

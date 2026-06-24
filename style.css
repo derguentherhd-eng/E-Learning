@@ -423,6 +423,8 @@ body {
   background: var(--border);
   border-radius: 9999px;
   overflow: visible;
+  touch-action: none;
+  cursor: pointer;
 }
 
 .slider-fill {
@@ -456,12 +458,13 @@ body {
   position: absolute;
   inset: 0;
   opacity: 0;
-  cursor: pointer;
   width: 100%;
   height: 100%;
   z-index: 3;
   -webkit-appearance: none;
+  appearance: none;
   margin: 0;
+  pointer-events: none;
 }
 
 /* ── Switch ─────────────────────────────────── */
@@ -488,9 +491,10 @@ body {
   height: 16px;
   border-radius: 50%;
   background: white;
-  transition: transform 0.2s;
+  transition: transform 0.2s, background 0.2s;
 }
 .switch.on::after { transform: translateX(16px); }
+.ch1-mode-row #dark-mode-switch.on::after { background: #1e1c19; }
 
 /* ─────────────────────────────────────────────
    CHAPTER-PAGE OVERVIEW (chapterpage.html)
@@ -1010,7 +1014,6 @@ body {
   position: absolute;
   transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.4s;
   pointer-events: none;
-  transform-style: preserve-3d;
 }
 .ch2-card-wrap.active { pointer-events: auto; cursor: pointer; }
 
@@ -1068,6 +1071,13 @@ body {
   font-size: 9rem;
   line-height: 1;
   letter-spacing: -0.01em;
+}
+
+.ch2-glyph-icon {
+  width: 100%;
+  height: auto;
+  max-height: 9rem;
+  object-fit: contain;
 }
 
 .ch2-card-term {
@@ -1184,11 +1194,13 @@ body {
 }
 
 .ch3-year {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.688rem;
-  letter-spacing: 0.2em;
-  color: var(--muted-fg);
-  margin-bottom: 0.75rem;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 800;
+  font-size: 4.5rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: rgba(38, 158, 95, 0.55);
+  margin-bottom: 1rem;
 }
 
 .ch3-entry-title {
@@ -2078,4 +2090,29 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   background: rgba(246, 245, 240, 0.97);
   transform: scale(1.08);
+}
+
+/* ── Index page splash entrance ─────────────────── */
+@keyframes splash-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.splash-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  opacity: 0;
+  transform-origin: center center;
+}
+
+.splash-inner.is-loaded {
+  animation: splash-enter 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }

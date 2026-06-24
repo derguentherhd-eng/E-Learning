@@ -50,13 +50,20 @@
 <body class="bg-background">
 
   <div class="splash">
-    <h1 class="splash-headline">
-      Willkommen zur E-Learning Anwendung<br />
-      Typografie und Technologie
-    </h1>
-    <a href="chapterpage.html" class="splash-btn">Jetzt E-Learning starten</a>
+    <div class="splash-inner" id="splash-inner">
+      <h1 class="splash-headline">
+        Willkommen zur E-Learning Anwendung<br />
+        Typografie und Technologie
+      </h1>
+      <a href="chapterpage.html" class="splash-btn">Jetzt E-Learning starten</a>
+    </div>
   </div>
 
+  <script>
+  window.addEventListener('load', function() {
+    document.getElementById('splash-inner').classList.add('is-loaded');
+  });
+  </script>
   <script>
   (function() {
     function pwaNav(e) {

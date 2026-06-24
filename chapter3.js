@@ -97,7 +97,7 @@ ENTRIES.forEach(e => {
   dot.className = "ch3-dot";
 
   const year = document.createElement("div");
-  year.className = "ch3-year font-mono";
+  year.className = "ch3-year";
   year.textContent = e.year;
 
   const title = document.createElement("h3");
@@ -113,16 +113,10 @@ ENTRIES.forEach(e => {
     textWrap.appendChild(p);
   });
 
-  const glyph = document.createElement("div");
-  glyph.className = "ch3-entry-glyph font-display";
-  glyph.style.fontWeight = e.weight;
-  glyph.textContent = e.glyph;
-
   entry.appendChild(dot);
   entry.appendChild(year);
   entry.appendChild(title);
   entry.appendChild(textWrap);
-  entry.appendChild(glyph);
   entriesEl.appendChild(entry);
 });
 
