@@ -17,7 +17,7 @@ const ENTRIES = [
       "Beim Bleisatz mussten einzelne Metalllettern mühsam von Hand oder maschinell zusammengesetzt werden, ein zeitaufwändiger und körperlich anspruchsvoller Prozess. Das neue fotomechanische Verfahren hingegen projizierte Schriftzeichen auf lichtempfindliches Material, was die Produktion erheblich beschleunigte und die Herstellung von sauberem Blocksatz deutlich vereinfachte. Zudem eröffnete es gestalterische Möglichkeiten, die mit dem mechanischen Bleisatz kaum realisierbar gewesen wären, etwa feinere Abstände zwischen Buchstaben und Zeilen sowie flexiblere Schriftgrößen.",
       "In Kombination mit den ersten Computersystemen, die zunehmend Einzug in Redaktionen und Druckereien hielten, setzte diese Entwicklung den entscheidenden Grundstein für den folgenden schnelllebigen Wandel in der Typografie- und Druckgeschichte."
     ],
-    image: "Images/Diatype_typesetter.jpg",
+    image: "Images/diatype.jpg",
     swatch: "#f2eeeb", glyph: "Aa", weight: 500, invert: false,
   },
   {
@@ -28,7 +28,7 @@ const ENTRIES = [
       "Vor PostScript war die Ausgabe von Schrift und Bild stark an spezifische Hardware gebunden, was die Zusammenarbeit zwischen verschiedenen Systemen erheblich erschwerte. Mit dem Apple Macintosh, der 1984 auf den Markt kam, und Programmen wie PageMaker entstand ein erstes vollständiges Desktop-Publishing-Ökosystem, das professionelle Layouts direkt am Computer ermöglichte.",
       "Gestaltung und Druckprozess trennten sich damit grundlegend voneinander. Gestalterinnen und Gestalter gewannen deutlich mehr Entscheidungsmacht bei der Entwicklung von Layouts und waren nicht länger durch die technischen Einschränkungen der Druckereien limitiert. Für viele Berufsgruppen im Druckwesen bedeutete dieser Wandel jedoch auch erhebliche strukturelle Veränderungen, da zahlreiche spezialisierte Handwerksberufe an Bedeutung verloren."
     ],
-    image: "Images/pagemaker_interface.png",
+    image: "Images/pagemaker.png",
     swatch: "#fbd530", glyph: "⌘", weight: 700, invert: false,
   },
   {
@@ -39,7 +39,7 @@ const ENTRIES = [
       "Prägend für die 1990er Jahre waren die sogenannten Font Wars: ein tiefgreifender Konflikt zwischen Microsoft und Adobe um die Vorherrschaft bei der Standardisierung digitaler Typografie. Microsoft entwickelte gemeinsam mit Apple das Format TrueType als Konkurrenz zu Adobes Type-1-Format, was die Branche in zwei unkompatible Lager spaltete und zu erheblicher Verwirrung bei Entwicklern und Gestaltern führte.",
       "Als gemeinsame Antwort auf diesen Konflikt wurde schließlich das Format OpenType entwickelt, das die Stärken beider Systeme vereinte, systemübergreifend funktionierte und erweiterte typografische Funktionen wie Ligaturen, Kapitälchen und alternative Glyphen direkt in einer einzigen Schriftdatei ermöglichte."
     ],
-    image: "Images/Fotothek_df_n-35_0000065_Facharbeiter_für_Satztechnik.jpg",
+    image: "Images/fotothek-satztechnik.jpg",
     swatch: "#ff6853", glyph: "OT", weight: 700, invert: true,
   },
   {
@@ -50,7 +50,7 @@ const ENTRIES = [
       "Unterschieden wurde dabei in grundlegende Schriftfamilien wie Monospace, Serif und Sans-Serif, die als generische Fallback-Kategorien dienten. Darüber hinaus ermöglichte CSS umfangreiche typografische Anpassungen wie Schriftschnitt, Schriftgröße, Zeilenabstand und Zeichenabstand – Eigenschaften, die zuvor nur im Print selbstverständlich waren.",
       "Die CSS-Regel @font-face stellte dabei einen besonders bedeutsamen Schritt dar: Sie ermöglichte es erstmals, externe Schriftdateien direkt in eine Webseite einzubinden, ohne dass diese zuvor auf den Geräten der Nutzerinnen und Nutzer installiert sein mussten. Damit wurde die Grundlage für die spätere Blütezeit der Webfonts gelegt."
     ],
-    image: "Images/erste-typo-tags%20html.png",
+    image: "Images/css-tags.png",
     swatch: "#135ae4", glyph: "@f", weight: 600, invert: true,
   },
   {
@@ -60,7 +60,7 @@ const ENTRIES = [
       "Plattformen wie Google Web Fonts und kommerzielle Anbieter wie Typekit demokratisierten den Zugang zu Typografie im Web grundlegend. Zuvor waren Entwicklerinnen und Entwickler auf eine sehr begrenzte Auswahl sogenannter Systemfonts angewiesen – jene Schriften, die auf dem jeweiligen Betriebssystem vorinstalliert waren und sich auf eine Handvoll bekannte Schriften wie Arial, Times New Roman oder Georgia beschränkten. Kreative Typografie im Web war damit kaum möglich.",
       "Mit den neuen Webfont-Plattformen konnten Entwicklerinnen, Entwickler und Gestalterinnen nun frei aus hunderten, später tausenden von Schriften wählen und diese über einfache Einbindung per Link oder API direkt im Browser laden. Google Web Fonts sorgte durch sein kostenloses Angebot dafür, dass hochwertige Typografie auch für kleinere Projekte und Einzelpersonen ohne Budget zugänglich wurde."
     ],
-    image: "Images/Diatronic_plate.jpg",
+    image: "Images/diatronic.jpg",
     swatch: "#269e5f", glyph: "Gf", weight: 600, invert: true,
   },
   {
@@ -71,7 +71,7 @@ const ENTRIES = [
       "WOFF komprimiert Schriftdaten mithilfe eines effizienten Algorithmus und sorgte damit für deutlich schnellere Ladezeiten bei gleichbleibender Qualität – ein entscheidender Vorteil in einer Zeit, in der das mobile Web rasant an Bedeutung gewann und Nutzerinnen wie Nutzer zunehmend über Smartphones und Tablets auf Inhalte zugriffen.",
       "Mit WOFF2, das kurze Zeit später folgte, wurde die Kompression nochmals erheblich verbessert und der Standard für die nächsten Jahre zementiert."
     ],
-    image: "Images/Linotype_CRTronic_360.jpg",
+    image: "Images/linotype-crt.jpg",
     swatch: "#1a1a2e", glyph: "Wf", weight: 600, invert: true,
   },
   {
@@ -122,19 +122,19 @@ ENTRIES.forEach(e => {
 
 /* ── Image cards (left sidebar) ──────────────── */
 const IMAGES = [
-  { file: '01_1440-1970_Bleisatz Setzkasten.jpg',                                           year: '1440–1970', label: 'Bleisatz Setzkasten' },
-  { file: '02_1941_Linotype Setzer für die Zeitung Chicago Defender.png',              year: '1941',           label: 'Linotype Setzer · Chicago Defender' },
-  { file: '03_1960_Diatype Fotosatzmaschiene im Einzelbuchstabenverfahren.jpg',             year: '1960',           label: 'Diatype · Einzelbuchstabenverfahren' },
-  { file: '04_1960_Glasmaster für die Diatype Fotosatzmaschiene.jpg',                 year: '1960',           label: 'Glasmaster · Diatype' },
-  { file: '05_1962_Linotype Kompakterfassungs- & Belichtungsgerät.jpg',               year: '1962',           label: 'Linotype Kompakt-Belichtungsgerät' },
-  { file: '06_1983_Facharbeiterinnen für Satztechnik im Fotosatzverfahren.jpg',       year: '1983',           label: 'Fotosatz-Facharbeiterinnen' },
-  { file: '07_1982_PostScript Code & Dargestelltes Bild.png',                              year: '1982',           label: 'PostScript Code & Darstellung' },
-  { file: '08_1985_Pagemaker Interface.png',                                               year: '1985',           label: 'PageMaker Interface' },
-  { file: '09_1984_HP Laserjet welcher PostScript entschlüsseln konnte.jpg',          year: '1984',           label: 'HP LaserJet · PostScript' },
-  { file: '10_2002_Erste Typografie Tags für HTML & CSS.png',                         year: '2002',           label: 'Typografie-Tags für HTML & CSS' },
-  { file: '11_2011-2026_Interface von Glyphs einem kostenlosen Typografie Programm.png',   year: '2011–2026', label: 'Glyphs · Typografie-Interface' },
-  { file: '12_2010-2018_Startseite von DaFont.png',                                        year: '2010–2018', label: 'DaFont Startseite' },
-  { file: '13_2016_Variable Fonts mit Anpassungen der X & Y Achsen.png',                  year: '2016',           label: 'Variable Fonts · X & Y Achsen' },
+  { file: 'bleisatz.jpg',          year: '1440–1970', label: 'Bleisatz Setzkasten' },
+  { file: 'linotype-chicago.png',  year: '1941',      label: 'Linotype Setzer · Chicago Defender' },
+  { file: 'diatype-einzel.jpg',    year: '1960',      label: 'Diatype · Einzelbuchstabenverfahren' },
+  { file: 'diatype-glasmaster.jpg',year: '1960',      label: 'Glasmaster · Diatype' },
+  { file: 'linotype-kompakt.jpg',  year: '1962',      label: 'Linotype Kompakt-Belichtungsgerät' },
+  { file: 'fotosatz-arbeit.jpg',   year: '1983',      label: 'Fotosatz-Facharbeiterinnen' },
+  { file: 'postscript-code.png',   year: '1982',      label: 'PostScript Code & Darstellung' },
+  { file: 'pagemaker-ui.png',      year: '1985',      label: 'PageMaker Interface' },
+  { file: 'hp-laserjet.jpg',       year: '1984',      label: 'HP LaserJet · PostScript' },
+  { file: 'css-typo-tags.png',     year: '2002',      label: 'Typografie-Tags für HTML & CSS' },
+  { file: 'glyphs-ui.png',         year: '2011–2026', label: 'Glyphs · Typografie-Interface' },
+  { file: 'dafont-start.png',      year: '2010–2018', label: 'DaFont Startseite' },
+  { file: 'variable-fonts.png',    year: '2016',      label: 'Variable Fonts · X & Y Achsen' },
 ];
 
 const swatchesEl = document.getElementById("ch3-swatches");

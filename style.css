@@ -435,7 +435,6 @@ body {
   background: var(--foreground);
   border-radius: 9999px;
   pointer-events: none;
-  transition: width 0.05s;
 }
 
 .slider-thumb {

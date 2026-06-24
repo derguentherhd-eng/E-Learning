@@ -22,7 +22,7 @@ const AXES = [
     apply: v => ({ fontVariationSettings:`"wdth" ${v}`, fontStretch:`${v}%` }),
   },
   {
-    key:"slnt", tag:"slnt", label:"Slant", min:-10, max:0, def:0, unit:"°",
+    key:"slnt", tag:"slnt", label:"Slant", min:-10, max:0, step:0.1, def:0, unit:"°",
     sample:"Nach vorne",
     description:"Die Slant-Achse neigt alle Buchstaben geometrisch, ohne ihre innere Zeichnung zu verändern. Das unterscheidet sie fundamental von echtem Kursiv: Kursive Schnitte werden komplett neu gezeichnet – das 'a' wechselt die Form, Bögen werden enger, Buchstaben bekommen neue Ausläufer. Slant hingegen kippt jede Buchstabenform einfach nach links oder rechts. Das ergibt subtile Betonung ohne Stilwechsel – besonders nützlich, wenn kein echter Kursivschnitt vorhanden ist.",
     apply: v => ({ fontVariationSettings:`"slnt" ${v}`, fontStyle: v < 0 ? "oblique" : "normal" }),
@@ -111,7 +111,7 @@ AXES.forEach(axis => {
   input.className = "slider-native";
   input.min   = axis.min;
   input.max   = axis.max;
-  input.step  = 1;
+  input.step  = axis.step !== undefined ? axis.step : 1;
   input.value = axis.def;
 
   const pct0 = ((axis.def - axis.min) / (axis.max - axis.min)) * 100;

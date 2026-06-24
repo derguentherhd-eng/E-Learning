@@ -21,13 +21,16 @@
     if (!fill || !thumb || !input) return;
 
     function updateFromX(clientX) {
-      const rect = track.getBoundingClientRect();
-      const pct  = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      const min  = parseAttr(input.min,  0);
-      const max  = parseAttr(input.max,  100);
-      const step = parseAttr(input.step, 1);
-      const raw  = min + pct * (max - min);
-      const val  = Math.max(min, Math.min(max, Math.round(raw / step) * step));
+      const rect     = track.getBoundingClientRect();
+      const pct      = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      const min      = parseAttr(input.min,  0);
+      const max      = parseAttr(input.max,  100);
+      const step     = parseAttr(input.step, 1);
+      const raw      = min + pct * (max - min);
+      const decimals = (step.toString().split('.')[1] || '').length;
+      const val      = parseFloat(
+        Math.max(min, Math.min(max, Math.round(raw / step) * step)).toFixed(decimals)
+      );
       input.value = val;
       input.dispatchEvent(new Event('input', { bubbles: true }));
     }
