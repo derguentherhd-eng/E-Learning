@@ -143,7 +143,7 @@ IMAGES.forEach(function(img) {
   card.className = "ch3-swatch-card has-image";
 
   const imgEl = document.createElement("img");
-  imgEl.src = 'Images/' + encodeURIComponent(img.file);
+  imgEl.src = 'Images/' + img.file;
   imgEl.alt = img.label;
   imgEl.className = "ch3-swatch-img";
 

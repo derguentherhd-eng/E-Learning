@@ -1082,13 +1082,13 @@ body {
 
 .ch2-card-term {
   font-family: 'Urbanist'; font-weight: 800;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .ch2-card-def {
   font-family: 'Urbanist', sans-serif;
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   line-height: 1.375;
 }
 
@@ -2012,7 +2012,7 @@ body {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted-fg);
-  align-self: flex-start;
+  text-align: center;
 }
 
 .instruction-card-title {
@@ -2020,7 +2020,7 @@ body {
   font-size: 1.5rem;
   line-height: 2.8rem;
   color: var(--foreground);
-  align-self: flex-start;
+  text-align: center;
   margin-top: -0.25rem;
 }
 

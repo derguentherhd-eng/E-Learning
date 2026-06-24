@@ -12,7 +12,7 @@ renderDots(CHAPTER_ID);
 /* ── Card data ──────────────────────────────── */
 const CARDS = [
   {
-    glyph: "Tt",
+    icon:  "Images/Icons/Karteikarte 1Typographie_im_Kern.svg",
     front: "Was ist Typografie im Kern?",
     back:  "Typografie ist die Kunst und Technik, geschriebene Sprache durch die Auswahl von Schriftarten, Schriftgrößen, Zeilenlängen und Abständen lesbar, ansprechend und bedeutungsvoll zu gestalten."
   },
