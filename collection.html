@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Wielands Höhle · Walking with Wieland</title>
+  <meta name="theme-color" content="#042615">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Wieland">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/icon-180.png">
+  <link rel="icon" href="assets/icon-192.png">
+  <link rel="stylesheet" href="css/style.css?v=20">
+</head>
+<body>
+  <!-- Regal-Hintergrund füllt den ganzen Screen -->
+  <div class="bg bg--collection" aria-hidden="true"></div>
+
+  <main class="screen screen--nav">
+
+    <!-- Trophy-Grid: unsichtbare Slots auf den 3 Regalbrettern -->
+    <div class="shelf-grid" aria-hidden="true">
+
+      <!-- Oberes Brett links → Welt 5 Entdeckerblick -->
+      <div class="trophy-slot trophy--w5 is-empty" id="ts-w5">
+        <img src="assets/entdeckerblick.png" alt="">
+        <span class="trophy-count" id="tc-w5"></span>
+      </div>
+
+      <!-- Oberes Brett rechts → Welt 4 Schatzkiste -->
+      <div class="trophy-slot trophy--w4 is-empty" id="ts-w4">
+        <img src="assets/schaetze.png" alt="">
+        <span class="trophy-count" id="tc-w4"></span>
+      </div>
+
+      <!-- Mittleres Brett mitte → Welt 1 Spürnase -->
+      <div class="trophy-slot trophy--w1 is-empty" id="ts-w1">
+        <img src="assets/spuernase.png" alt="">
+        <span class="trophy-count" id="tc-w1"></span>
+      </div>
+
+      <!-- Unteres Brett links → Welt 2 Ruhe -->
+      <div class="trophy-slot trophy--w2 is-empty" id="ts-w2">
+        <img src="assets/ruhe.png" alt="">
+        <span class="trophy-count" id="tc-w2"></span>
+      </div>
+
+      <!-- Unteres Brett rechts → Welt 3 Zeitgefühl -->
+      <div class="trophy-slot trophy--w3 is-empty" id="ts-w3">
+        <img src="assets/zeitgefuehl.png" alt="">
+        <span class="trophy-count" id="tc-w3"></span>
+      </div>
+
+    </div>
+
+    <!-- Wochen-Navigation unten (über der Haupt-Nav) -->
+    <div class="week-nav" role="navigation" aria-label="Wochennavigation">
+      <button class="week-nav__btn" id="week-prev" type="button" aria-label="Vorherige Woche">&#8249;</button>
+      <span class="week-nav__label" id="week-label"></span>
+      <button class="week-nav__btn" id="week-next" type="button" aria-label="Nächste Woche">&#8250;</button>
+    </div>
+
+  </main>
+
+  <script src="js/exercises.js?v=10"></script>
+  <script src="js/trophies.js?v=10"></script>
+  <script src="js/app.js?v=15"></script>
+  <script src="js/photoStore.js?v=1"></script>
+  <script src="js/camera.js?v=1"></script>
+  <script src="js/collection.js?v=13"></script>
+</body>
+</html>

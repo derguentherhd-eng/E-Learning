@@ -1,84 +1,37 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Walking with Wieland</title>
+  <meta name="description" content="Geh mit Wieland spazieren – kleine Entdeckungen unterwegs.">
+  <meta name="theme-color" content="#042615">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=1366, height=1024, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, viewport-fit=cover" />
-  <title>Type Lab — Willkommen</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .splash {
-      width: 1366px;
-      height: 1024px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2.5rem;
-    }
-
-    .splash-headline {
-      font-family: 'Boldonse', sans-serif;
-      font-size: 3.75rem;
-      line-height: 1.2;
-      text-align: center;
-      color: var(--foreground);
-    }
-
-    .splash-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1rem 2.5rem;
-      background: var(--c-ink);
-      color: var(--c-bone);
-      font-family: 'Oswald', sans-serif;
-      font-weight: 500;
-      font-size: 1rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 9999px;
-      transition: opacity 0.2s;
-    }
-    .splash-btn:hover { opacity: 0.8; }
-  </style>
+  <meta name="apple-mobile-web-app-title" content="Wieland">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/icon-180.png">
+  <link rel="icon" href="assets/icon-192.png">
+  <link rel="stylesheet" href="css/style.css?v=19">
 </head>
-<body class="bg-background">
+<body>
+  <div class="bg bg--home" aria-hidden="true"></div>
 
-  <div class="splash">
-    <div class="splash-inner" id="splash-inner">
-      <h1 class="splash-headline">
-        Willkommen zur E-Learning Anwendung<br />
-        Typografie und Technologie
-      </h1>
-      <a href="chapterpage.html" class="splash-btn">Jetzt E-Learning starten</a>
+  <main class="screen screen--nav">
+    <div class="weekbar" id="weekbar" aria-label="Wochenfortschritt"></div>
+
+    <div class="home-scene">
+      <div class="home-scene__spacer-top" aria-hidden="true"></div>
+      <p class="bubble" id="bubble">…</p>
+      <div class="home-scene__spacer-bot" aria-hidden="true"></div>
+      <a class="btn" href="checkin.html">Spaziergang starten</a>
     </div>
-  </div>
+  </main>
 
-  <script>
-  window.addEventListener('load', function() {
-    document.getElementById('splash-inner').classList.add('is-loaded');
-  });
-  </script>
-  <script>
-  (function() {
-    function pwaNav(e) {
-      var a = e.target.closest('a[href]');
-      if (!a || a.target === '_blank') return;
-      try {
-        var url = new URL(a.href, location.href);
-        if (url.origin !== location.origin) return;
-      } catch(ex) { return; }
-      e.preventDefault();
-      window.location.assign(a.href);
-    }
-    document.addEventListener('touchend', pwaNav, { passive: false });
-    document.addEventListener('click',    pwaNav, false);
-  })();
-  </script>
+  <script src="js/exercises.js?v=10"></script>
+  <script src="js/trophies.js?v=10"></script>
+  <script src="js/app.js?v=15"></script>
+  <script src="js/home.js?v=10"></script>
 </body>
 </html>
