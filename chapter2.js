@@ -47,8 +47,8 @@ const CARDS = [
     back:  `Im Gegensatz zum Tracking ist Kerning die gezielte Anpassung des Abstands zwischen zwei bestimmten, aufeinanderfolgenden Zeichen (z. B. „A“ und „V“). Ziel ist es, störende weiße Lücken zu schließen, damit das Schriftbild harmonisch wirkt.`
   },
   {
-    glyph: "fi",
-    front: `Was sind „Ligaturen“?`,
+    icon:  "Images/Icons/fi.svg",
+    front: `Was sind „Ligaturen”?`,
     back:  "Eine Ligatur ist die Verschmelzung von zwei oder mehr Buchstaben zu einem einzigen Zeichen (z. B. f und i zu fi), um Kollisionen von Buchstabenteilen zu vermeiden."
   },
   {
