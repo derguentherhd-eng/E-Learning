@@ -18,6 +18,7 @@ const CARDS = [
   },
   {
     icon:  "Images/Icons/typefacevsfont.svg",
+    iconLg: true,
     front: `Was ist der Unterschied zwischen einem „Typeface“ und einem „Font“?`,
     back:  "Das Typeface ist das visuelle Design (z. B. Helvetica oder Times New Roman). Es ist das, was man sieht. Der Font ist die technologische Umsetzung (die Software-Datei oder früher der Setzkasten)."
   },
@@ -54,7 +55,8 @@ const CARDS = [
   {
     icon:  "Images/Icons/ausrichtungen.svg",
     front: "Welche Satzarten (Ausrichtungen) gibt es hauptsächlich in den Fontsettings?",
-    back:  "1. Linksbündig (Flattersatz rechts) – Standard für beste Lesbarkeit. 2. Rechtsbündig (Flattersatz links). 3. Zentriert (Symmetrisch, oft für Titel). 4. Blocksatz (Blocksatz links und rechts bündig)"
+    backHTML: true,
+    back:  "1. Linksbündig (Flattersatz rechts) – Standard für beste Lesbarkeit.<br><br>2. Rechtsbündig (Flattersatz links).<br><br>3. Zentriert (Symmetrisch, oft für Titel).<br><br>4. Blocksatz (links und rechts bündig)"
   },
 ];
 
@@ -87,6 +89,7 @@ CARDS.forEach((card, i) => {
     glyphEl.className = "ch2-glyph-icon";
     glyphEl.src = card.icon;
     glyphEl.alt = "";
+    if (card.iconLg) glyphEl.style.maxHeight = "13rem";
   } else {
     glyphEl = document.createElement("span");
     glyphEl.className = "ch2-glyph font-display";
@@ -111,7 +114,7 @@ CARDS.forEach((card, i) => {
 
   const def = document.createElement("p");
   def.className = "ch2-card-def font-display";
-  def.textContent = card.back;
+  if (card.backHTML) { def.innerHTML = card.back; } else { def.textContent = card.back; }
 
   back.appendChild(tagB);
   back.appendChild(def);
