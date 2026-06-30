@@ -53,5 +53,65 @@
     document.addEventListener('click',    pwaNav, false);
   })();
   </script>
+  <script>
+  (function () {
+    var STORAGE_KEY = 'type-lab-overlay-ack-home';
+
+    var overlay = document.createElement('div');
+    overlay.className = 'instruction-overlay';
+    overlay.innerHTML =
+      '<div class="instruction-card">' +
+        '<div class="instruction-card-meta">TYPE LAB</div>' +
+        '<div class="instruction-card-title">Willkommen</div>' +
+        '<p class="instruction-card-text">' +
+          'In unserem E-Learning erwarten dich sechs Kapitel, in denen du Schritt ' +
+          'für Schritt mehr über Technologie und Typografie lernst.' +
+          '<br><br>' +
+          'Die Inhalte bauen aufeinander auf – schalte die Kapitel nacheinander ' +
+          'frei und vertiefe dein Wissen mit jedem Abschnitt.' +
+        '</p>' +
+        '<button class="instruction-btn-ok" type="button">Verstanden</button>' +
+      '</div>';
+    document.body.appendChild(overlay);
+
+    var acknowledged = false;
+    try { acknowledged = !!localStorage.getItem(STORAGE_KEY); } catch(e) {}
+    if (acknowledged) overlay.style.display = 'none';
+
+    function dismiss() {
+      overlay.style.display = 'none';
+      try { localStorage.setItem(STORAGE_KEY, '1'); } catch(e) {}
+    }
+
+    function show() {
+      overlay.style.display = 'flex';
+      var card = overlay.querySelector('.instruction-card');
+      card.style.animation = 'none';
+      card.offsetHeight;
+      card.style.animation = '';
+    }
+
+    overlay.querySelector('.instruction-btn-ok').addEventListener('click', function(e) {
+      e.stopPropagation();
+      dismiss();
+    });
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) dismiss();
+    });
+
+    var infoBtn = document.createElement('button');
+    infoBtn.className = 'info-btn';
+    infoBtn.type = 'button';
+    infoBtn.title = 'Info anzeigen';
+    infoBtn.textContent = 'i';
+    infoBtn.style.background = '#1e1c19';
+    infoBtn.style.color = '#f6f5f0';
+    infoBtn.style.border = 'none';
+    infoBtn.addEventListener('click', show);
+    document.body.appendChild(infoBtn);
+
+    window.__showHomeOverlay = show;
+  })();
+  </script>
 </body>
 </html>

@@ -17,12 +17,12 @@ const CARDS = [
     back:  "Typografie ist die Kunst und Technik, geschriebene Sprache durch die Auswahl von Schriftarten, Schriftgrößen, Zeilenlängen und Abständen lesbar, ansprechend und bedeutungsvoll zu gestalten."
   },
   {
-    glyph: "Ff",
+    icon:  "Images/Icons/typefacevsfont.svg",
     front: `Was ist der Unterschied zwischen einem „Typeface“ und einem „Font“?`,
     back:  "Das Typeface ist das visuelle Design (z. B. Helvetica oder Times New Roman). Es ist das, was man sieht. Der Font ist die technologische Umsetzung (die Software-Datei oder früher der Setzkasten)."
   },
   {
-    glyph: "F",
+    icon:  "Images/Icons/bleisatz.svg",
     front: `Wie definierte sich ein „Font“ früher im Vergleich zu heute?`,
     back:  "Früher (Bleisatz): Ein Font war ein physischer Satz von Metalllettern in einer einzigen Größe und einem einzigen Stil (z. B. 12 Punkt Garamond Fett). Heute (Digital): Ein Font ist eine skalierbare Software-Datei, die alle Größen und oft hunderte verschiedene Zeichenvarianten (Glyphen) enthält."
   },

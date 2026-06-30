@@ -19,6 +19,8 @@ function resetProgress() {
   for (let i = 1; i <= 6; i++) {
     try { localStorage.removeItem('type-lab-overlay-ack-0' + i); } catch {}
   }
+  try { localStorage.removeItem('type-lab-overlay-ack-home'); } catch {}
+  if (typeof window.__showHomeOverlay === 'function') window.__showHomeOverlay();
   render();
 }
 
